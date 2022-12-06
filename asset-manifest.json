@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/advent-of-code-2022/static/css/main.073c9b0a.css",
+    "main.js": "/advent-of-code-2022/static/js/main.ea9f0cdb.js",
+    "static/js/787.b6c2b428.chunk.js": "/advent-of-code-2022/static/js/787.b6c2b428.chunk.js",
+    "static/media/logo.svg": "/advent-of-code-2022/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/advent-of-code-2022/index.html",
+    "main.073c9b0a.css.map": "/advent-of-code-2022/static/css/main.073c9b0a.css.map",
+    "main.ea9f0cdb.js.map": "/advent-of-code-2022/static/js/main.ea9f0cdb.js.map",
+    "787.b6c2b428.chunk.js.map": "/advent-of-code-2022/static/js/787.b6c2b428.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.ea9f0cdb.js"
+  ]
+}
