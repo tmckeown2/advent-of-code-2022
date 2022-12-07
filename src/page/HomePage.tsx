@@ -3,8 +3,7 @@ import {
   Grid,
   Paper,
   Link,
-  Typography,
-  Stack
+  Typography
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
@@ -26,7 +25,7 @@ export default function HomePage() {
       <Grid container spacing={3} columns={7}>
         {
           days.map((day, index) => (
-            <Grid key={index} xs={1} m={1}>
+            <Grid key={index} xs={1} m={1} item>
               <Item>
                 <Link href={`#/day/${index + 1}`}>Day {index + 1}</Link>
                 <Typography variant="h6">{day}</Typography>
