@@ -13,7 +13,6 @@ import {
   Paper,
   Alert
 } from "@mui/material";
-import inputData from "./input.json";
 import { 
   TaskDescription,
   TaskParagraph,
@@ -25,72 +24,27 @@ import {
   TaskList,
   TaskListItem
 } from "../../component/Task";
-
-const exampleData: Array<String> = [
-  "1000",
-  "2000",
-  "3000",
-  "",
-  "4000",
-  "",
-  "5000",
-  "6000",
-  "",
-  "7000",
-  "8000",
-  "9000",
-  "",
-  "10000",
-]
-
-const summary: String = "Day 1 - Calorie Counting";
-
-
-interface Elf {
-  id: number;
-  items: Array<number>;
-  total: number;
-}
-function getElves(inputData: Array<string>): Array<Elf> {
-  let elves: Array<Elf> = [];
-
-  let index: number = 0;
-  let items: Array<number> = [];
-  for (let line of inputData) {
-    let value: number = parseInt(line);
-
-    if (Number.isNaN(value)) {
-      elves.push({ id: index, items: items, total: items.reduce((acc, current) => (acc + current), 0)});
-      items = [];
-      ++index;
-    } else {
-      items.push(value);
-    }
-  }
-  if (items.length > 0) {
-    elves.push({ id: index, items: items, total: items.reduce((acc, current) => (acc + current), 0)});
-  }
-
-  return elves;
-}
-function getMostCalories(elves: Array<Elf>): Elf {
-  const totals: Array<number> = elves.map(elf => elf.total);
-  const largest: number = Math.max(...totals);
-  const index: number = totals.indexOf(largest);
-
-  return elves[index];
-}
-function getTopElves(elves: Array<Elf>, count: number): Array<Elf> {
-  elves.sort((a, b) => {
-    if (a.total < b.total) return 1;
-    if (a.total > b.total) return -1;
-    return 0;
-  });
-
-  return elves.slice(0, count);
-}
+import inputData from "./input.json";
 
 export default function Day1() {
+  const summary: string = "Day 1 - Calorie Counting";
+  const exampleData: Array<string> = [
+    "1000",
+    "2000",
+    "3000",
+    "",
+    "4000",
+    "",
+    "5000",
+    "6000",
+    "",
+    "7000",
+    "8000",
+    "9000",
+    "",
+    "10000",
+  ]
+
   return (
     <Box sx={{ mx: 5, my: 5 }}>
       <TaskDescription summary={summary}>
@@ -183,19 +137,67 @@ export default function Day1() {
           Find the top three Elves carrying the most Calories. <TaskKeyword>How many Calories are those Elves carrying in total?</TaskKeyword>
         </TaskParagraph>
       </TaskDescription>
-      <Solution />
+      <Solution data={inputData} />
     </Box>
   )
 }
 
-function Solution() {
+interface Elf {
+  id: number;
+  items: Array<number>;
+  total: number;
+}
+function getElves(data: Array<string>): Array<Elf> {
+  let elves: Array<Elf> = [];
+
+  let index: number = 0;
+  let items: Array<number> = [];
+  for (let line of data) {
+    let value: number = parseInt(line);
+
+    if (Number.isNaN(value)) {
+      elves.push({ id: index, items: items, total: items.reduce((acc, current) => (acc + current), 0)});
+      items = [];
+      ++index;
+    } else {
+      items.push(value);
+    }
+  }
+  if (items.length > 0) {
+    elves.push({ id: index, items: items, total: items.reduce((acc, current) => (acc + current), 0)});
+  }
+
+  return elves;
+}
+function getMostCalories(elves: Array<Elf>): Elf {
+  const totals: Array<number> = elves.map(elf => elf.total);
+  const largest: number = Math.max(...totals);
+  const index: number = totals.indexOf(largest);
+
+  return elves[index];
+}
+function getTopElves(elves: Array<Elf>, count: number): Array<Elf> {
+  elves.sort((a, b) => {
+    if (a.total < b.total) return 1;
+    if (a.total > b.total) return -1;
+    return 0;
+  });
+
+  return elves.slice(0, count);
+}
+
+interface SolutionProps {
+  data: Array<string>;
+}
+function Solution(props: SolutionProps) {
+  const { data } = props;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const [orderBy, setOrderBy] = React.useState("ID");
   const [order, setOrder] = React.useState<"asc" | "desc">("asc");
 
   // Read in data
-  const elves: Array<Elf> = getElves(inputData);
+  const elves: Array<Elf> = getElves(data);
   // Part 1: Find the elf with the most calories - how many total calories?
   const snackElf: Elf = getMostCalories(elves);
   // Part 2: Find the top 3 elves - how many total calories?

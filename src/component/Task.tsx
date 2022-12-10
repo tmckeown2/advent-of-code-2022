@@ -11,7 +11,11 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-export function TaskKeyword(props: any) {
+interface TaskKeywordProps {
+  variant?: "star";
+  children?: any;
+}
+export function TaskKeyword(props: TaskKeywordProps) {
   const { variant, children } = props;
   
   let color = "#000000";
@@ -25,7 +29,11 @@ export function TaskKeyword(props: any) {
     </Typography>
   );
 }
-export function TaskLink(props: any) {
+interface TaskLinkProps {
+  href: string;
+  children?: any;
+}
+export function TaskLink(props: TaskLinkProps) {
   const { href, children } = props;
   
   return (
@@ -34,14 +42,21 @@ export function TaskLink(props: any) {
     </Link>
   );
 }
-export function TaskCodeBlock(props: any) {
+interface TaskCodeBlockProps {
+  lines: Array<string>;
+}
+export function TaskCodeBlock(props: TaskCodeBlockProps) {
   const { lines } = props;
 
   return (
     <CodeBlock text={lines.join("\n")} showLineNumbers={false} />
   );
 }
-export function TaskCode(props: any) {
+interface TaskCodeProps {
+  text: string;
+  bold?: boolean;
+}
+export function TaskCode(props: TaskCodeProps) {
   const { text, bold } = props;
 
   return (
@@ -50,7 +65,10 @@ export function TaskCode(props: any) {
     </Typography>
   );
 }
-export function TaskList(props: any) {
+interface TaskListProps {
+  children?: any;
+}
+export function TaskList(props: TaskListProps) {
   const { children } = props;
 
   return (
@@ -59,7 +77,10 @@ export function TaskList(props: any) {
     </ul>
   )
 }
-export function TaskListItem(props: any) {
+interface TaskListItemProps {
+  children?: any;
+}
+export function TaskListItem(props: TaskListItemProps) {
   const { children } = props;
 
   return (
@@ -67,7 +88,10 @@ export function TaskListItem(props: any) {
   )
 }
 
-export function TaskParagraph(props: any) {
+interface TaskParagraphProps {
+  children?: any;
+}
+export function TaskParagraph(props: TaskParagraphProps) {
   const { children } = props;
   
   return (
@@ -76,7 +100,10 @@ export function TaskParagraph(props: any) {
     </Typography>
   );
 }
-export function TaskHeader(props: any) {
+interface TaskHeaderProps {
+  children?: any;
+}
+export function TaskHeader(props: TaskHeaderProps) {
   const { children } = props;
 
   return (
@@ -86,7 +113,11 @@ export function TaskHeader(props: any) {
   );
 }
 
-export function TaskDescription(props: any) {
+interface TaskDescriptionProps {
+  summary: string;
+  children?: any;
+}
+export function TaskDescription(props: TaskDescriptionProps) {
   const { summary, children } = props;
   
   return (
